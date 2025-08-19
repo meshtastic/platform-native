@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "forkProcessing": "enabled",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Match meshtastic/framework-portduino version",
+      "managerFilePatterns": [ "/platform.json/" ],
+      "matchStrings": [
+        "\"version\": \"https://github.com/meshtastic/framework-portduino\\.git#(?<currentDigest>[a-f0-9]+)\""
+      ],
+      "datasourceTemplate": "git-refs",
+      "packageNameTemplate": "https://github.com/meshtastic/framework-portduino.git",
+      "depNameTemplate": "meshtastic/framework-portduino",
+      "currentValueTemplate": "master",
+      "versioningTemplate": "git"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDepNames": [
+        "meshtastic/framework-portduino"
+      ],
+      "changelogUrl": "https://github.com/meshtastic/framework-portduino/compare/{{currentDigest}}...{{newDigest}}"
+    }
+  ]
+}

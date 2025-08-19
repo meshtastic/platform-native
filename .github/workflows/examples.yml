@@ -9,19 +9,19 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         example:
-          - "examples/hello-world"
+          - examples/hello-world
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          submodules: "recursive"
+          submodules: recursive
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.9"
+          python-version: 3.x
       - name: Install dependencies
         run: |
-          pip install -U https://github.com/platformio/platformio/archive/develop.zip
+          pip install -U platformio
           pio pkg install --global --platform symlink://.
       - name: Build examples
         run: |
